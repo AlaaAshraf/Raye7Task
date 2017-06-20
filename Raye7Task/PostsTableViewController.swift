@@ -11,16 +11,11 @@ import UIKit
 
 class PostsTableViewController: UITableViewController {
    
-    var myPosts: [[String: Any]] = []
+    var posts: [[String: Any]] = []
     override func viewDidLoad() {
         super.viewDidLoad()
         getPosts()
-        //print(myPosts.count)
-        // Uncomment the following line to preserve selection between presentations
-        // self.clearsSelectionOnViewWillAppear = false
-
-        // Uncomment the following line to display an Edit button in the navigation bar for this view controller.
-        // self.navigationItem.rightBarButtonItem = self.editButtonItem()
+        
     }
 
     
@@ -30,7 +25,6 @@ class PostsTableViewController: UITableViewController {
         // Dispose of any resources that can be recreated.
     }
 
-    // MARK: - Table view data source
 
     override func numberOfSections(in tableView: UITableView) -> Int {
         //return the number of sections
@@ -39,8 +33,8 @@ class PostsTableViewController: UITableViewController {
 
     override func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         //return the number of rows
-        print(myPosts.count)
-        return myPosts.count
+        print(posts.count)
+        return posts.count
     }
 
     
@@ -48,8 +42,8 @@ class PostsTableViewController: UITableViewController {
         let cell = tableView.dequeueReusableCell(withIdentifier: "cell", for: indexPath)
 
         // Configure the cell...
-        cell.textLabel?.text = self.myPosts[indexPath.row]["title"] as! String
-        cell.detailTextLabel?.text = self.myPosts[indexPath.row]["body"] as! String
+        cell.textLabel?.text = self.posts[indexPath.row]["title"] as! String
+        cell.detailTextLabel?.text = self.posts[indexPath.row]["body"] as! String
         return cell
     }
     
@@ -82,9 +76,9 @@ class PostsTableViewController: UITableViewController {
                     print("Error in JSON conversion")
                     return
                 }
-                self.myPosts = posts
+                self.posts = posts
                 self.tableView.reloadData()
-                //print(self.myPosts.count)
+                //print(self.posts.count)
             }
             catch{
                 print("error trying to convert data to JSON")
